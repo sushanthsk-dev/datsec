@@ -17,8 +17,8 @@ exports.pageView = (req, res, next) => {
 exports.getBlogOverview = catchAsync(async (req, res) => {
   let pageNum;
   if (
-    req.originalUrl.startsWith('/admin/blogs/page/') &&
-    !req.originalUrl.startsWith('/admin/blogs/page/0')
+    req.originalUrl.startsWith('/blogs/page/') &&
+    !req.originalUrl.startsWith('/blogs/page/0')
   ) {
     req.query.page = parseInt(req.params.pageNo) + 1;
     pageNum = req.query.page - 1;
@@ -39,7 +39,7 @@ exports.getBlogOverview = catchAsync(async (req, res) => {
     .sort()
     .pagination();
   const blogs = await features.query;
-  res.status(200).render('adminOverview', {
+  res.status(200).render('blogsOverview', {
     title: 'Blogs',
     blogs,
     blogLength,
@@ -84,6 +84,14 @@ exports.adminLogin = (req, res) => {
   });
 };
 exports.adminBlogOverview = catchAsync(async (req, res) => {
+  let pageNum;
+  if (
+    req.originalUrl.startsWith('/admin/blogs/page/') &&
+    !req.originalUrl.startsWith('/admin/blogs/page/0')
+  ) {
+    req.query.page = parseInt(req.params.pageNo) + 1;
+    pageNum = req.query.page - 1;
+  }
   const allBlogs = await Blogs.find();
   const blogLength = allBlogs.length;
   req.query.sort = '-createdAt';
@@ -93,6 +101,7 @@ exports.adminBlogOverview = catchAsync(async (req, res) => {
     title: 'Blogs',
     blogs,
     blogLength,
+    pageNum,
   });
 });
 
