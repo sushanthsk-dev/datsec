@@ -1,0 +1,115 @@
+extends base
+block content
+    style.
+        * {
+        margin: 0;
+        }
+        body {
+        color: white;
+        background-color:rgba(0,0,0,0.2);
+        }
+        .blog-overview-container {
+                font-family: sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        }
+        
+        input[type=email],
+        [type=password] {
+        font-size: 14px;
+        color:black;
+        width: 100%;
+        height: 40px;
+        padding: 0px 10px;
+        outline-color: aqua;
+        border: none;
+        border-radius: 4px;
+        }
+        form label {
+            color:#fff !important; 
+            letter-spacing:1px;
+        }
+        form {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        justify-content: center;
+        width: 400px;
+        padding: 30px 10px 10px 10px;
+        border-radius: 10px;
+        background-color: rgba(0,0,0,0.6);
+        }
+        .submit {
+        cursor: pointer;
+        width: 100%;
+        margin: 10px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background: rgba(51, 90, 219, 0.933);
+        padding: 10px 10px;
+        backface-visibility: hidden;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        }
+        .submit:hover {
+        transition: ease-in-out 0.5s;
+        background-color: rgba(19, 52, 88, 0.933);
+        }
+        .submit:focus {
+        background-color: rgb(117, 126, 241);
+        outline: 0;
+        }
+        .form-data a {
+            float:right; 
+            margin:15px 15px;
+            font-size:16px;
+            color: #eeee;
+        }
+        .form-data a:hover {
+            color: rgb(156, 156, 236);
+            transition-duration:.4s;
+        }            
+        @media screen and (max-width: 480px) {
+            form {
+                width:300px;
+            }
+        }
+    header
+       nav.navbar.navbar-default.navbar-inverse(style='background-color: black;z-index:9999;')
+        .container
+            // Brand and toggle get grouped for better mobile display
+            .navbar-header
+                button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='/') &gt;./Datsec&lt; 
+            // Collect the nav links, forms, and other content for toggling
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href='/admin') #Login
+
+            // /.navbar-collapse
+            // /.container-fluid
+
+       section.container.blog-overview-container
+        form.form-data.form-user-login
+            h2(style='text-align: center; margin-bottom: 20px;') Admin Login
+            label(for='firstName') Email :
+            input#email(type='email'  name='name' placeholder='Enter email address' autocomplete=false required='')
+            br
+            br
+            br
+            label(for='password') Password :
+            input#password(type='password' name='password' placeholder='Enter password' required='')
+            a(href="/admin/forgotPassword") forgot Password?
+            br
+            button.submit Login 

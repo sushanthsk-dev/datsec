@@ -1,0 +1,107 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.6.2/animate.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css"">
+     <link rel=" stylesheet" href="../css/blogstyle.css"">
+  </head>
+  <body>
+    <header>
+      <nav class=" navbar navbar-default navbar-fixed-top navbar-inverse" style="background-color: black;">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">>./Scriptkids< <?></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                        <a href="/createpost">
+                            #Create blog
+                        </a>
+                </li>
+                </li>
+                <li><a href="about.html">#Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+    </nav>
+
+    </header>
+    <section class="container-fluid blog-form-container">
+        <form class="form-group">
+            <label for="title">Title :</label>
+            <input class="form-control" type="text" name="title" id="title" autocomplete="false" placeholder="Enter a title of a blog"> <br>
+            <label for="blogImage">Upload image cover :</label>
+            <input class="form-control" type="file" name="blogImage" id="blogImage" style="width:250px"><br>
+            <label for="description">Description :</label>
+            <input class="form-control" type="text" name="description" id="description" autocomplete="false"
+                placeholder="Enter a description"> <br>
+            <label for="title">Content :</label>
+            <textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea> <br>
+            <div>
+                <label for="sel1">No of Steps:</label>
+                <div style="display: flex;">
+                    <select class="form-control" id="sel1" style="width:60px;" onchange="createStep(this)">
+                        <option value="1"></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select> <br>
+                    <button class="btn btn-primary btnCreateSteps" style="margin: 0px 8px;">Create</button>
+                </div>
+            </div>
+            <div class="steps">
+
+            </div>
+            <button class="btn btn-success btnCreateBlog" style="margin: 10px 0px; float: right;">Sumbit</button>
+        </form>
+    </section>
+    <div class="footer">
+        <ul class="icons">
+          <li><a href="#" target="_blank" class="icon fa fa-facebook">
+              <span class="label">Facebook</span></a></li>
+          <li><a href="https://www.instagram.com/sushanthsk_/" target="_blank" class="icon fa fa-instagram"><span
+                class="label">Instagram</span></a></li>
+          <li><a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=flydecor65@gmail.com" target="_blank"
+              class="icon fa fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">&copy; 2020 | <b>ScriptKid</b>. All Rights Reserved. <br>Designed by <a
+            style="text-decoration: none !important;" href="https://www.instagram.com/sushanthsk_/"
+            target="_blank">Sushanth
+            Sk</a></p>
+    
+      </div>
+    
+    </body>
+    <script src="../js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

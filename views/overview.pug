@@ -1,0 +1,70 @@
+extends base
+block content
+        header
+            nav.navbar.navbar-default.navbar-inverse(style='background-color: black;')
+                .container
+                    // Brand and toggle get grouped for better mobile display
+                    .navbar-header
+                        button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+                            span.sr-only Toggle navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.navbar-brand(href='/') &gt;./Datsec&lt; 
+                    // Collect the nav links, forms, and other content for toggling
+                    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                        ul.nav.navbar-nav.navbar-right
+                            li
+                                a(href='/') #Home
+                            li
+                                a(href='/about') #About
+                            li
+                                a(href='/blogs') #Blogs
+                            li
+                                a(href='/contact') #contact
+                    // /.navbar-collapse
+                    // /.container-fluid
+            #carousel-example-generic.carousel.slide(data-ride='carousel')
+                // Indicators
+                ol.carousel-indicators
+                    li.active(data-target='#carousel-example-generic' data-slide-to='0')
+                    li(data-target='#carousel-example-generic' data-slide-to='1')
+                    li(data-target='#carousel-example-generic' data-slide-to='2')
+                // Wrapper for slides
+                .carousel-inner(role='listbox')
+                    .item.active
+                        .banner(style='background-image: url(img/2.jpg)')
+                        .carousel-caption
+                            h2.animated.bounceInRight(style='animation-delay: 1s')
+                                | We Are 
+                                span Creative
+                            h3.animated.bounceInLeft(style='animation-delay: 2s')
+                                | Web Design and Development
+                            p.animated.bounceInRight(style='animation-delay: 3s')
+                                a(href='/blogs') blogs
+                    .item
+                        .banner(style='background-image: url(img/1.jpg)')
+                        .carousel-caption
+                            h2.animated.slideInDown(style='animation-delay: 1s')
+                                | We Are 
+                                span Hacker
+                            h3.animated.fadeInUp(style='animation-delay: 2s')
+                                | We are uinted
+                            p.animated.zoomIn(style='animation-delay: 3s')
+                                a(href='/blogs') blog
+                    .item
+                        .banner(style='background-image: url(img/12.jpg)')
+                        .carousel-caption
+                            h2.animated.zoomIn(style='animation-delay: 1s')
+                                | freelancing 
+                                span contact
+                            h3.animated.fadeInLeft(style='animation-delay: 2s')
+                            p.animated.zoomIn(style='animation-delay: 3s')
+                                a(href='/contact') Contact us
+                // Controls
+                a.left.carousel-control(href='#carousel-example-generic' role='button' data-slide='prev')
+                    span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+                    span.sr-only Previous
+                a.right.carousel-control(href='#carousel-example-generic' role='button' data-slide='next')
+                    span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+                    span.sr-only Next

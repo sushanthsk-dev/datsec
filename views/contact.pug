@@ -1,0 +1,94 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        title DatSec | #{title}
+        link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+        link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap' rel='stylesheet')
+        link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet')
+        link(href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.6.2/animate.min.css' rel='stylesheet')
+        link(rel='preconnect' href='https://fonts.gstatic.com')
+        link(href='https://fonts.googleapis.com/css2?family=VT323&display=swap' rel='stylesheet')
+        link(rel='preconnect' href='https://fonts.gstatic.com')
+        link(href='https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap' rel='stylesheet')
+        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')      
+        link(rel='stylesheet' href='/css/style.css')
+        link(rel='stylesheet' href='/css/blogstyle.css')
+
+    body
+        header
+            nav.navbar.navbar-default.navbar-inverse(style='background-color: black;')
+                    .container
+                        // Brand and toggle get grouped for better mobile display
+                        .navbar-header
+                            button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+                                span.sr-only Toggle navigation
+                                span.icon-bar
+                                span.icon-bar
+                                span.icon-bar
+                            a.navbar-brand(href='/') &gt;./Datsec&lt; 
+                        // Collect the nav links, forms, and other content for toggling
+                        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                            ul.nav.navbar-nav.navbar-right
+                                li
+                                    a(href='/') #Home
+                                li
+                                    a(href='/about') #About
+                                li
+                                    a(href='/blogs') #Blogs
+                                li
+                                    a(href='/contact') #contact
+                        // /.navbar-collapse
+                        // /.container-fluid
+            // /.container-fluid
+        section.container.contactus-container
+            .container-fluid.contactus
+                div
+                    h2 Get In Touch
+                    form.form-horizontal
+                        .form-group
+                            label.control-label.col-sm-2(for='name') Name:
+                            .col-sm-10
+                                input#name.form-control(type='email' placeholder='Enter name' name='name' autocomplete='off' autocapitalize='on')
+                                span#errorName.error1.hide-error
+                        .form-group
+                            label.control-label.col-sm-2(for='email') Email:
+                            .col-sm-10
+                                input#email.form-control(type='email' placeholder='Enter email' name='email' autocomplete='off')
+                                span#errorName.error2.hide-error
+                        .form-group
+                            label.control-label.col-sm-2(for='subject') Subject:
+                            .col-sm-10
+                                input#subject.form-control(type='text' placeholder='Enter subject' name='subject' autocomplete='off')
+                                span#errorName.error3.hide-error
+                        .form-group
+                            label.control-label.col-sm-2(for='message') Message:
+                            .col-sm-10
+                                textarea#message.form-control(name='message' rows='7' placeholder='Enter message' autocomplete='off')
+                                span#errorName.error4.hide-error
+                        .form-group
+                            .col-sm-offset-2.col-sm-10
+                                button.btn.btn-success.send-message(type='submit') Submit
+        .footer
+            ul.icons
+                li
+                    a.icon.fa.fa-facebook(href='#' target='_blank')
+                        span.label Facebook
+                li
+                    a.icon.fa.fa-instagram(href='https://www.instagram.com/sushanthsk_/' target='_blank')
+                        span.label Instagram
+                li
+                    a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=flydecor65@gmail.com' target='_blank')
+                        span.label Email
+            p.copyright
+                | &copy; 2020 | 
+                b ScriptKid
+                | . All Rights Reserved. 
+                br
+                | Designed by 
+                a(style='text-decoration: none !important;' href='https://www.instagram.com/sushanthsk_/' target='_blank') Sushanth Sk
+    script(src="/js/bundle.js")
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js' type="text/javascript")
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js')

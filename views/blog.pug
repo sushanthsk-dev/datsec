@@ -1,0 +1,98 @@
+extends base
+block content
+    header
+        nav.navbar.navbar-default.navbar-inverse(style='background-color: black;')
+                .container
+                    // Brand and toggle get grouped for better mobile display
+                    .navbar-header
+                        button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+                            span.sr-only Toggle navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.navbar-brand(href='/') &gt;./Datsec&lt; 
+                    // Collect the nav links, forms, and other content for toggling
+                    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                        if user
+                            if user.role == 'admin'
+                                ul.nav.navbar-nav.navbar-right
+                                    li
+                                        a(href='/admin/blogs') #Blogs
+                                    li
+                                        a(href='/logout') #Logout
+                            else
+                                ul.nav.navbar-nav.navbar-right
+                                    li
+                                        a(href='/') #Home
+                                    li
+                                        a(href='/about') #About
+                                    li
+                                        a(href='/blogs') #Blogs
+                                    li
+                                        a(href='/contact') #contact                                    
+                                            
+                        else
+                            ul.nav.navbar-nav.navbar-right
+                                li
+                                    a(href='/') #Home
+                                li
+                                    a(href='/about') #About
+                                li
+                                    a(href='/blogs') #Blogs
+                                li
+                                    a(href='/contact') #contact
+                    // /.navbar-collapse
+                    // /.container-fluid
+    section.container-fluid.blog-content-container
+        .row
+            .leftcolumn
+                    .card(style="background-color:#fff")
+                        div.head-container
+                            h2= blog.title
+                            - const date=blog.createdAt.toLocaleString('en-us', {day:'numeric', month:'short',year: 'numeric'});
+                            h5.date= `updated on ${date}`
+                        img.img-container(src=`/img/blogs/${blog.imageCover}` alt=`${blog.slug}` )
+                        div.content
+                            article !{blog.content}    
+                        if blog.stepsDescription
+                        - const count=blog.stepsDescription.length;
+                        - var i=0;
+                        if count > 0
+                            b
+                                p Steps
+                            while i<count
+                                p=`Step ${i+1}:`
+                                p(style="margin:0px 19px")=`${blog.stepsDescription[i]}`
+                                img.step-img-container(src=`/img/blogs/${blog.stepsImg[i]}` alt=`${blog.title}`)
+                                br
+                                br
+                                - i++;
+                        p.blog-footer
+                            b Disclaimer: 
+                            The blogs, tutorial and demo provided on datsec is for informational and educational purpose only. Do not attempt to violate the law with anything contained here. If you planned to use the content for illegal purpose, then please leave this site immediately! We will not be responsible for your any illegal actions.
+            .rightcolumn
+                    .card(style="background-color:#fff;padding:10px 15px;" )
+                        h3.text-center Recent Blogs
+                        ul.recentBlog
+                            each blogLink in allBlog
+                                li
+                                    a.recent-post(href=`/blogs/${blogLink.slug}`)= blogLink.title 
+                                    br 
+    .footer
+        ul.icons
+            li
+                a.icon.fa.fa-facebook(href='#' target='_blank')
+                    span.label Facebook
+            li
+                a.icon.fa.fa-instagram(href='https://www.instagram.com/sushanthsk_/' target='_blank')
+                    span.label Instagram
+            li
+                a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=flydecor65@gmail.com' target='_blank')
+                    span.label Email
+        p.copyright
+            | &copy; 2020 | 
+            b ScriptKid
+            | . All Rights Reserved. 
+            br
+            | Designed by 
+            a(style='text-decoration: none !important;' href='https://www.instagram.com/sushanthsk_/' target='_blank') Sushanth Sk

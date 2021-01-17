@@ -1,0 +1,22 @@
+const express = require('express');
+const viewController = require('../controllers/viewController');
+const authController = require('../controllers/authController');
+const route = express.Router();
+
+route.get('/', viewController.getHome);
+route.get('/contact', viewController.contact);
+route.get('/blogs', viewController.getBlogOverview);
+route.get('/blogs/:slug', viewController.getBlog);
+route.get('/blogs/page/:pageNo', viewController.getBlogOverview);
+route.get('/admin/blogs/page/:pageNo', viewController.getBlogOverview);
+route.get('/admin', authController.isLoggedIn, viewController.adminLogin);
+route.get('/admin/forgotPassword', viewController.forgotPassword);
+route.get('/admin/resetPassword/:token', viewController.resetPassword);
+route.use(authController.protect);
+route.use(authController.restrictTo('admin', 'editor'));
+route.get('/admin/blogs/:slug', viewController.getBlog);
+route.get('/admin/logout', authController.logout);
+route.get('/admin/blogs', viewController.adminBlogOverview);
+route.get('/admin/createblog', viewController.createBlog);
+route.get('/admin/editBlog/:blogId', viewController.editBlog);
+module.exports = route;
