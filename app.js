@@ -6,6 +6,7 @@ const hpp = require('hpp');
 const mongoSanitize = require('express-mongo-sanitize');
 const rateLmit = require('express-rate-limit');
 const xss = require('xss-clean');
+const compression = require('compression');
 const AppError = require('./utils/AppError');
 const blogsRoutes = require('./routers/blogsRoutes');
 const userRoutes = require('./routers/userRoutes');
@@ -76,6 +77,9 @@ app.use(
     whitelist: ['title'],
   })
 );
+
+app.use(compression());
+
 app.use('/api/v1/blogs', blogsRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/client', clientRoutes);
