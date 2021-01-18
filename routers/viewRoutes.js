@@ -5,6 +5,7 @@ const route = express.Router();
 
 route.get('/', viewController.getHome);
 route.get('/contact', viewController.contact);
+route.get('/about', viewController.about);
 route.get('/blogs', viewController.getBlogOverview);
 route.get('/blogs/:slug', viewController.getBlog);
 route.get('/blogs/page/:pageNo', viewController.getBlogOverview);

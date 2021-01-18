@@ -15,7 +15,6 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "a": "^2.1.2",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.4",

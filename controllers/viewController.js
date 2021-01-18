@@ -78,6 +78,12 @@ exports.contact = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.about = catchAsync(async (req, res, next) => {
+  res.status(200).render('about', {
+    title: 'About',
+  });
+});
+
 exports.adminLogin = (req, res) => {
   res.status(200).render('adminlogin', {
     title: 'Admin Login',
