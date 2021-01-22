@@ -1,4 +1,4 @@
-const Client = require('../models/responseModel');
+const Response = require('../models/responseModel');
 const AppError = require('../utils/AppError');
 const CatchAsync = require('../utils/CatchAsync');
 
@@ -7,8 +7,10 @@ exports.createResponse = CatchAsync(async (req, res, next) => {
   if (!name || !email || !subject || !message) {
     return next(new AppError('Please fill the form', 401));
   }
-  await Client.create(req.body);
+  const data = await Response.create(req.body);
+  console.log(data);
   res.status(200).json({
     status: 'success',
+    data,
   });
 });

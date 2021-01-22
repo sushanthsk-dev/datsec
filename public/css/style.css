@@ -50,6 +50,32 @@ nav {
   font-size: 20px;
   font-weight: bolder;
 }
+.card p {
+  text-align: left;
+}
+.card {
+  padding: 6px 6px;
+  margin: 8px;
+  width: 19.6rem;
+}
+.response-container .card {
+  width: 250px;
+  background-color: rgb(240, 239, 239);
+  border-radius: 10px;
+  box-shadow: 0px 1px 4rem rgb(172, 172, 172);
+}
+.response-container h4 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.response-container a {
+  font-size: 14px;
+}
+.response-container h5 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .navbar-inverse .navbar-brand {
   color: #ff0000;
 
@@ -123,6 +149,10 @@ nav ul li a:hover {
   width: 100%;
   height: 100vh;
 }
+
+.response-container {
+  height: calc(100vh - 90px);
+}
 .contactus {
   position: relative;
   justify-content: center;
@@ -160,7 +190,7 @@ nav ul li a:hover {
 .blog-container {
   padding: 10px;
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 .contactus h2 {
   font-size: 2.5em;
@@ -202,9 +232,10 @@ input[type='password'] {
   display: block;
 }
 .custom-alert {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 50%;
+  width: 100%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   z-index: 10000;
@@ -214,7 +245,7 @@ input[type='password'] {
   text-align: center;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  padding: 1rem 4rem;
+  padding: 1.5rem 4rem;
   -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
 }
@@ -429,6 +460,9 @@ nav {
   margin: 0;
 }
 @media only screen and (max-width: 450px) {
+  .dialog-ovelay .dialog {
+    width: 300px;
+  }
   .create-post {
     left: 80%;
   }

@@ -10,7 +10,7 @@ const compression = require('compression');
 const AppError = require('./utils/AppError');
 const blogsRoutes = require('./routers/blogsRoutes');
 const userRoutes = require('./routers/userRoutes');
-const clientRoutes = require('./routers/clientRoutes');
+const responseRoutes = require('./routers/responseRoutes');
 const viewRoutes = require('./routers/viewRoutes');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -82,7 +82,7 @@ app.use(compression());
 
 app.use('/api/v1/blogs', blogsRoutes);
 app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/client', clientRoutes);
+app.use('/api/v1/client', responseRoutes);
 app.use('/', viewRoutes);
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

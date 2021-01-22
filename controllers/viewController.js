@@ -1,4 +1,5 @@
 const Blogs = require('../models/blogsModel');
+const Response = require('../models/responseModel');
 const catchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
 const APIFeatures = require('../utils/ApiFeatures');
@@ -137,5 +138,16 @@ exports.forgotPassword = CatchAsync(async (req, res) => {
 exports.resetPassword = CatchAsync(async (req, res) => {
   res.status(200).render('resetPassword', {
     title: 'Reset Password',
+  });
+});
+
+exports.getResponse = CatchAsync(async (req, res, next) => {
+  const response = await Response.find();
+  if (!response) {
+    return next(new AppError('No response found!', 404));
+  }
+  res.status(200).render('response', {
+    title: 'Response Sheet',
+    response,
   });
 });

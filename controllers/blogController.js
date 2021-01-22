@@ -37,7 +37,7 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
   const randomString = crypto.randomBytes(16).toString('hex');
   req.body.imageCover = `blog-${randomString}-${Date.now()}-cover.jpeg`;
   await sharp(req.files.imageCover[0].buffer)
-    .resize(2000, 1333)
+    .resize(1280, 720, { fit: 'cover' })
     .toFormat('jpeg')
     .jpeg('quality:40')
     .toFile(`public/img/blogs/${req.body.imageCover}`);
@@ -48,7 +48,7 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
         const randomString = crypto.randomBytes(16).toString('hex');
         const filename = `blogs-${randomString}-${Date.now()}-${i + 1}.jpeg`;
         await sharp(file.buffer)
-          .resize(480, 320)
+          .resize(480, 320, { fit: 'cover' })
           .toFormat('jpeg')
           .jpeg('quality:60')
           .toFile(`public/img/blogs/${filename}`);
