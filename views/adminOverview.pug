@@ -3,8 +3,13 @@ block content
     style.
         .card {
             overflow-x:hidden;
-            width: 350px;
-            background: #fff;
+            overflow-y:hidden;
+            width:360px;
+            height:380px;
+            background: rgba(250,240,243,1);
+            -webkit-box-shadow: 1px 1px 19px -7px rgba(0,0,0,0.75);
+            -moz-box-shadow: 1px 1px 19px -7px rgba(0,0,0,0.75);
+            box-shadow: 1px 1px 19px -7px rgba(0,0,0,0.75);
             padding-bottom: 4px;
             border-radius: 6px;
         }
@@ -23,7 +28,7 @@ block content
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
                         li
-                            a(href='/admin/response') admin
+                            a(href='/admin/response') Response
                         li
                             a.logout-btn #Logout
 

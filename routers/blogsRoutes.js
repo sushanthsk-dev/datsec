@@ -27,10 +27,13 @@ router
     authController.restrictTo('admin', 'editor'),
     blogController.uploadBlogImages,
     blogController.resizeBlogImages,
+    blogController.deleteImage,
     blogController.updateBlog
   )
   .delete(
-    // authController.restrictTo('admin', 'editor'),
+    authController.protect,
+    authController.restrictTo('admin', 'editor'),
+    blogController.deleteImage,
     blogController.deleteBlog
   );
 module.exports = router;

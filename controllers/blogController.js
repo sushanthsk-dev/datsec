@@ -1,3 +1,4 @@
+const fs = require('fs');
 const crypto = require('crypto');
 const Blogs = require('../models/blogsModel');
 const multer = require('multer');
@@ -58,7 +59,18 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
   }
   next();
 });
+exports.deleteImage = CatchAsync(async (req, res, next) => {
+  const blog = await Blogs.findById(req.params.id);
+  if (!blog) next();
+  if (!blog.imageCover) next();
+  fs.unlink(`public/img/blogs/${blog.imageCover}`, function (err) {
 
+    if (err) {
+      next(new AppError('Image not found', 401));
+    }
+  });
+  next();
+});
 exports.getAllBlog = factory.getAll(Blogs);
 
 exports.createBlog = factory.createOne(Blogs);

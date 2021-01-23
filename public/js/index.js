@@ -8,6 +8,7 @@ import { popupConfirm } from './popupConfirm';
 import { visibilityControl } from './visibilityControl';
 import { createBlog } from './contactResponse';
 import { updateBlog } from './contactResponse';
+import { contactResponse } from './contactResponse';
 import { resetPassword } from './login';
 const contactForm = document.querySelector('.send-message');
 const btnCreateSteps = document.querySelector('.btnCreateSteps');
@@ -78,16 +79,19 @@ if (contactForm) {
   contactForm.addEventListener('click', (e) => {
     validate(e);
     e.preventDefault();
-    // if(bool == false) {
-    //     e.target.textContent = 'Sending...';
-    //     contactResponse(name,email,subject,message,e);
 
-    // }
-
-    // if (sendMessage.classList[3] == 'send-response') {
-    //   // e.target.textContent = 'Sending...';
-    //   contactResponse(name, email, subject, message);
-    // }
+    if (document.querySelector('.send-message').classList[3]) {
+      if (
+        document.querySelector('.send-message').classList[3] == 'send-response'
+      ) {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        e.target.textContent = 'Sending...';
+        contactResponse(name, email, subject, message);
+      }
+    }
   });
 }
 
@@ -173,9 +177,10 @@ if (document.querySelector('.btnEditBlog'))
     const content = document.getElementById('content').value;
 
     const imageCover = document.getElementById('blogImage').files[0];
+
     const form = new FormData();
     form.append('title', title);
-    form.append('imageCover', imageCover);
+    if (imageCover) form.append('imageCover', imageCover);
     form.append('content', content);
     updateBlog(form, id);
   });

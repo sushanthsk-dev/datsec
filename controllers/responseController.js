@@ -8,7 +8,6 @@ exports.createResponse = CatchAsync(async (req, res, next) => {
     return next(new AppError('Please fill the form', 401));
   }
   const data = await Response.create(req.body);
-  console.log(data);
   res.status(200).json({
     status: 'success',
     data,
