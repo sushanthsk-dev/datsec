@@ -362,6 +362,7 @@ input[type='button'] {
     width: 90%;
   }
   .blog-container {
+    overflow-x: hidden;
     padding: 10px 5px;
   }
   .card {
