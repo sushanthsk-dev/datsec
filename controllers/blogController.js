@@ -54,7 +54,6 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
         const randomString = crypto.randomBytes(16).toString('hex');
         const filename = `blogs-${randomString}-${Date.now()}-${i + 1}.jpeg`;
         await sharp(file.buffer)
-          .resize(480, 320, { fit: 'cover' })
           .toFormat('jpeg')
           .jpeg('quality:60')
           .toFile(`public/img/blogs/${filename}`);
