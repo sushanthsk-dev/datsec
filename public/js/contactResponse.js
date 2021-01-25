@@ -7,7 +7,7 @@ export const contactResponse = async (name, email, subject, message) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: '/api/v1/client/response',
+      url: '/api/v1/response/',
       data: {
         name,
         email,
@@ -53,9 +53,9 @@ export const updateBlog = async (data, id) => {
     });
     if (res.data.status === 'success') {
       showAlert('success', 'Blog updated');
-      // window.setTimeout(() => {
-      //   location.assign('/admin/blogs');
-      // }, 1000);
+      window.setTimeout(() => {
+        location.assign('/admin/blogs');
+      }, 1000);
     }
   } catch (e) {
     showAlert('error', e.response.data.message);

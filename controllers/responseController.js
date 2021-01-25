@@ -1,4 +1,5 @@
 const Response = require('../models/responseModel');
+const factory = require('./handlerFactory');
 const AppError = require('../utils/AppError');
 const CatchAsync = require('../utils/CatchAsync');
 
@@ -13,3 +14,5 @@ exports.createResponse = CatchAsync(async (req, res, next) => {
     data,
   });
 });
+
+exports.deleteResponse = factory.deleteOne(Response);

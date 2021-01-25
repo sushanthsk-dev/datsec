@@ -35,30 +35,31 @@ block content
                 // /.navbar-collapse
                 // /.container-fluid
     section.blog-container
-        each blog in blogs
-            .card
-                img.card-img-top(src=`/img/blogs/${blog.imageCover}` alt=`${blog.slug}` style='width: 100%')
-                .card-body(style='padding: 6px')
-                    - const date=blog.createdAt.toLocaleString('en-us', {day:'numeric', month:'short',year: 'numeric'});
-                    if blog.visibility === false
-                        p#blog-visibility(style="float:right;margin:6px;background:rgba(0,0,0,0.2);padding:2px;") private 
-                    else
-                        p#blog-visibility(style="float:right;margin:6px;background:rgba(0,0,0,0.2);padding:2px;") public 
+        .blog-div
+            each blog in blogs
+                .card
+                    img.card-img-top(src=`/img/blogs/${blog.imageCover}` alt=`${blog.slug}` style='width: 100%')
+                    .card-body(style='padding: 6px')
+                        - const date=blog.createdAt.toLocaleString('en-us', {day:'numeric', month:'short',year: 'numeric'});
+                        if blog.visibility === false
+                            p#blog-visibility(style="float:right;margin:6px;background:rgba(0,0,0,0.2);padding:2px;") private 
+                        else
+                            p#blog-visibility(style="float:right;margin:6px;background:rgba(0,0,0,0.2);padding:2px;") public 
 
-                    h5.card-date= date
-                    a(href=`/admin/blogs/${blog.slug}`).card-title=blog.title
-                    - const description =  `${blog.content.substring(0,100)} [...]`;
-                    p.card-text= description                
-                .control-container
-                    .blog-visibility-control
-                        select#mySelect.form-control.select-form-visibility
-                            option(value='0') Private
-                            option(value='1') Public
-                        - const value = blog.visibility === false ? 0 : 1 ;
-                        button.btn-sm.btn-success.btn-save(arial-id=`${blog.id}-${value}`) Save
-                    .control-button
-                        a.btn-sm.btn-warning.btn-update(href=`/admin/editBlog/${blog.slug}`) Edit
-                        a.btn-sm.btn-danger.btn-delete(arial-id=`${blog.id}`) Delete
+                        h5.card-date= date
+                        a(href=`/admin/blogs/${blog.slug}`).card-title=blog.title
+                        - const description =  `${blog.content.substring(0,100)} [...]`;
+                        p.card-text= description                
+                    .control-container
+                        .blog-visibility-control
+                            select#mySelect.form-control.select-form-visibility
+                                option(value='0') Private
+                                option(value='1') Public
+                            - const value = blog.visibility === false ? 0 : 1 ;
+                            button.btn-sm.btn-success.btn-save(arial-id=`${blog.id}-${value}`) Save
+                        .control-button
+                            a.btn-sm.btn-warning.btn-update(href=`/admin/editBlog/${blog.slug}`) Edit
+                            a.btn-sm.btn-danger.btn-delete(arial-id=`${blog.id}`) Delete
         a(href='/admin/createblog')
             img.fa.fa-plus.create-post(src="/img/plus-icon.png" height="56")                     
     .pagination
@@ -92,7 +93,7 @@ block content
                 a.icon.fa.fa-instagram(href='https://www.instagram.com/sushanthsk_/' target='_blank')
                     span.label Instagram
             li
-                a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=flydecor65@gmail.com' target='_blank')
+                a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=iamdatsec@gmail.com' target='_blank')
                     span.label Email
         p.copyright
             | &copy; 2021 | 

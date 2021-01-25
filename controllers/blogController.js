@@ -34,7 +34,12 @@ exports.aliasTop5RecentBlog = (req, res, next) => {
 };
 
 exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
-  if (!req.files.imageCover) return next();
+  if (!req.files) {
+    return next();
+  }
+  if (!req.files.imageCover) {
+    return next();
+  }
   const randomString = crypto.randomBytes(16).toString('hex');
   req.body.imageCover = `blog-${randomString}-${Date.now()}-cover.jpeg`;
   await sharp(req.files.imageCover[0].buffer)
@@ -60,11 +65,12 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
   next();
 });
 exports.deleteImage = CatchAsync(async (req, res, next) => {
+  if (!req.body.imageCover) return next();
+  if (!req.body.stepsImg) return next();
   const blog = await Blogs.findById(req.params.id);
   if (!blog) next();
   if (!blog.imageCover) next();
   fs.unlink(`public/img/blogs/${blog.imageCover}`, function (err) {
-
     if (err) {
       next(new AppError('Image not found', 401));
     }

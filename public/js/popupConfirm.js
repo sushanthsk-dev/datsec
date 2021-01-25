@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { showAlert } from './alert';
-export const popupConfirm = function (title, msg, $true, $false, id) {
+export const popupConfirm = function (title, msg, $true, $false, type, id) {
   /*change*/
   var $content =
     "<div class='dialog-ovelay'>" +
@@ -27,29 +27,37 @@ export const popupConfirm = function (title, msg, $true, $false, id) {
     '</footer>' +
     '</div>' +
     '</div>';
-  $('body').prepend($content);
-  document.body.classList.add('stop-scrolling');
-  $('.doAction').click(async function () {
-    try {
-      const res = await axios({
-        method: 'DELETE',
-        url: `/api/v1/blogs/${id}`,
-      });
-      if (res.data.status == undefined) {
-        showAlert('success', 'Blog deleted successfully');
-        window.setTimeout(() => {
-          location.assign('/admin/blogs');
-        }, 1500);
+  if (!document.querySelector('.dialog-ovelay')) {
+    $('body').prepend($content);
+    document.body.classList.add('stop-scrolling');
+    $('.doAction').click(async function () {
+      const url =
+        type === 'blog' ? `/api/v1/blogs/${id}` : `/api/v1/response/${id}`;
+
+      try {
+        const res = await axios({
+          method: 'DELETE',
+          url: url,
+        });
+        if (res.data.status == undefined) {
+          if (type === 'blog')
+            showAlert('success', 'Blog deleted successfully');
+          else showAlert('success', 'Response deleted successfully');
+          window.setTimeout(() => {
+            if (type === 'blog') location.assign('/admin/blogs');
+            else location.assign('/admin/response');
+          }, 1500);
+        }
+      } catch (e) {
+        showAlert('error', 'Failed to delete blog. Please try again');
       }
-    } catch (e) {
-      showAlert('error', 'Failed to delete blog. Please try again');
-    }
-    $(this)
-      .parents('.dialog-ovelay')
-      .fadeOut(500, function () {
-        $(this).remove();
-      });
-  });
+      $(this)
+        .parents('.dialog-ovelay')
+        .fadeOut(500, function () {
+          $(this).remove();
+        });
+    });
+  }
   $('.cancelAction, .fa-close').click(function () {
     document.body.classList.remove('stop-scrolling');
     $(this)

@@ -41,14 +41,20 @@ block content
                                     a(href='/blogs') #Blogs
                                 li
                                     a(href='/contact') #contact 
+    
     section.container-fluid.response-container(style='margin-top: 10px; justify-content: center;')
-        each res in response
-            .card
-                .card-body
-                    h4= res.name
-                    a= res.email
-                    h5= res.subject
-                    !=[res.message]
+        div.response-div
+            each res in response
+                .card
+                    .card-body
+                        h4= res.name
+                        a= res.email
+                        h5= res.subject
+                        !=[res.message]
+                    .contro--container
+                        .control-button
+                            a.btn-sm.btn-danger.btn-delete-res(arial-id=`${res.id}`) Delete
+
         script(src='/js/bundle.js')    
     .footer
         ul.icons
@@ -59,7 +65,7 @@ block content
                 a.icon.fa.fa-instagram(href='https://www.instagram.com/sushanthsk_/' target='_blank')
                     span.label Instagram
             li
-                a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=flydecor65@gmail.com' target='_blank')
+                a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=iamdatsec@gmail.com' target='_blank')
                     span.label Email
         p.copyright
             | &copy; 2020 | 

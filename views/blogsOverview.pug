@@ -5,7 +5,6 @@ block content
             overflow-x:hidden;
             overflow-y:hidden;
             width: 360px;
-            height:340px;
             background: rgba(250,240,243,1);
             -webkit-box-shadow: 1px 1px 19px -7px rgba(0,0,0,0.75);
             -moz-box-shadow: 1px 1px 19px -7px rgba(0,0,0,0.75);
@@ -38,16 +37,17 @@ block content
                     // /.navbar-collapse
                     // /.container-fluid
     section.blog-container
-        each blog in blogs
-            .card
-                img.card-img-top(src=`/img/blogs/${blog.imageCover}` alt=`${blog.slug}` style='width: 100%')
-                .card-body(style='padding: 6px')
-                    - const date=blog.createdAt.toLocaleString('en-us', {day:'numeric', month:'short',year: 'numeric'});
-                    h5.card-date= date
-                    - const id=`${blog._id}`;
-                    a(href=`/blogs/${blog.slug}`).card-title=blog.title
-                    - const description =  `${blog.content.substring(0,100)} [...]`;
-                    p.card-text= description
+        .blog-div
+            each blog in blogs
+                .card
+                    img.card-img-top(src=`/img/blogs/${blog.imageCover}` alt=`${blog.slug}` style='width: 100%')
+                    .card-body(style='padding: 6px')
+                        - const date=blog.createdAt.toLocaleString('en-us', {day:'numeric', month:'short',year: 'numeric'});
+                        h5.card-date= date
+                        - const id=`${blog._id}`;
+                        a(href=`/blogs/${blog.slug}`).card-title=blog.title
+                        - const description =  `${blog.content.substring(0,100)} [...]`;
+                        p.card-text= description
     .pagination
         if blogLength > 20
             if pageNum <=1 || pageNum == Nan
@@ -79,7 +79,7 @@ block content
                 a.icon.fa.fa-instagram(href='https://www.instagram.com/sushanthsk_/' target='_blank')
                     span.label Instagram
             li
-                a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=flydecor65@gmail.com' target='_blank')
+                a.icon.fa.fa-envelope(href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=iamdatsec@gmail.com' target='_blank')
                     span.label Email
         p.copyright
             | &copy; 2021 | 

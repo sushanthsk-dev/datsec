@@ -26,8 +26,10 @@ nav {
   text-align: left;
   font-size: 16px;
 }
-
 .blog-container {
+  height: 100vh;
+}
+.blog-div {
   font-family: Arial;
   position: relative;
   display: flex;
@@ -259,6 +261,9 @@ ul.icons li:last-child {
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
+  .blog-container {
+    height: 100%;
+  }
   .step-img-container {
     margin: 4px 19px;
     width: 50%;

@@ -82,7 +82,7 @@ app.use(compression());
 
 app.use('/api/v1/blogs', blogsRoutes);
 app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/client', responseRoutes);
+app.use('/api/v1/response', responseRoutes);
 app.use('/', viewRoutes);
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

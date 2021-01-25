@@ -95,6 +95,20 @@ if (contactForm) {
   });
 }
 
+const allBtnDltRes = document.querySelectorAll('.btn-delete-res');
+allBtnDltRes.forEach((btn) => {
+  btn.addEventListener('click', function () {
+    const id = this.getAttribute('arial-id');
+    popupConfirm(
+      `Delete Response`,
+      'Are you sure you want to Delete this response',
+      'Yes',
+      'Cancel',
+      'res',
+      id
+    );
+  });
+});
 const allBtnDlt = document.querySelectorAll('.btn-delete');
 allBtnDlt.forEach((btn) => {
   btn.addEventListener('click', function () {
@@ -104,6 +118,7 @@ allBtnDlt.forEach((btn) => {
       'Are you sure you want to Delete this blog',
       'Yes',
       'Cancel',
+      'blog',
       id
     );
   });
@@ -180,7 +195,7 @@ if (document.querySelector('.btnEditBlog'))
 
     const form = new FormData();
     form.append('title', title);
-    if (imageCover) form.append('imageCover', imageCover);
+    if (imageCover != null) form.append('imageCover', imageCover);
     form.append('content', content);
     updateBlog(form, id);
   });

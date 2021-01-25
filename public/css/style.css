@@ -57,14 +57,22 @@ nav {
   padding: 6px 6px;
   margin: 10px;
 }
-.response-container {
+
+.response-div {
   display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .response-container .card {
+  height: 100%;
+  display: block;
   width: 250px;
   background-color: rgb(240, 239, 239);
   border-radius: 10px;
-  box-shadow: 0px 1px 4rem rgb(172, 172, 172);
+  -webkit-box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.75);
 }
 .response-container h4 {
   font-size: 24px;
@@ -146,20 +154,25 @@ nav ul li a:hover {
 }
 .contactus-container,
 .aboutus-container {
-  background-color: #e5e5e5;
+  background-color: #ffffff;
   padding: 34px 0;
   width: 100%;
   height: 100%;
 }
+.aboutus-container .container {
+  width: 100%;
+  height: 100vh;
+}
 
 .response-container {
-  height: 100%;
+  height: 100vh;
 }
 .contactus {
   position: relative;
   justify-content: center;
   margin-bottom: 24px;
 }
+
 .aboutus div {
   position: relative;
   justify-content: center;
@@ -168,15 +181,17 @@ nav ul li a:hover {
   margin: 0px 36px;
 }
 .aboutus h2 {
-  font-size: 2.5em;
+  font-size: 3em;
   font-weight: bold;
   text-align: center;
   padding: 10px 0px;
   margin-bottom: 10px;
 }
 .aboutus p {
-  font-size: 16px;
-  padding: 6px;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 20px 15px;
+  margin: 0px 40px;
 }
 .contactus h2 {
   font-weight: bold;
@@ -192,7 +207,6 @@ nav ul li a:hover {
 .blog-container {
   padding: 14.5px 10px;
   position: relative;
-  height: 100vh;
 }
 .contactus h2 {
   font-size: 2.5em;
@@ -419,13 +433,28 @@ nav {
     font-size: 50px;
   }
   .create-post {
-    left: 90%;
+    left: 85%;
   }
 }
 @media only screen and (max-width: 767px) {
+  .response-container {
+    height: 100%;
+  }
   .contactus {
     width: 100%;
     padding-right: 10px;
+  }
+  .aboutus p {
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px 0px;
+    margin: 0px 0px;
+  }
+  .aboutus-container {
+    padding: 10px;
+  }
+  .aboutus {
+    padding: 0;
   }
   .navbar-inverse .navbar-brand {
     font-size: 40px;
@@ -461,10 +490,17 @@ nav {
 .form-user-login a {
   margin: 0;
 }
+@media only screen and (max-width: 926px) {
+  .aboutus-container .container {
+    width: 100%;
+    height: 100%;
+  }
+}
 @media only screen and (max-width: 450px) {
   .dialog-ovelay .dialog {
     width: 300px;
   }
+
   .create-post {
     left: 80%;
   }

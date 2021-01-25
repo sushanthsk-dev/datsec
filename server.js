@@ -29,3 +29,5 @@ process.on('unhandledRejection', (err) => {
   console.log(err, err.message);
   server.close(() => process.exit(1));
 });
+
+process.on('SIGTERM')
