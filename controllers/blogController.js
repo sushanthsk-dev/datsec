@@ -66,7 +66,6 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
 });
 exports.deleteImage = CatchAsync(async (req, res, next) => {
   if (!req.body.imageCover) return next();
-  if (!req.body.stepsImg) return next();
   const blog = await Blogs.findById(req.params.id);
   if (!blog) next();
   if (!blog.imageCover) next();
