@@ -37,7 +37,7 @@ block content
         .blog-div
             each blog in blogs
                 .card
-                    img.card-img-top(src=`/img/blogs/${blog.imageCover}` alt=`${blog.slug}` style='width: 100%')
+                    img.card-img-top(src=`https://datsec-blog-images.s3.ap-south-1.amazonaws.com/blog-images/${blog.imageCover}` alt=`${blog.slug}` style='width: 100%')
                     .card-body(style='padding: 6px')
                         - const date=blog.createdAt.toLocaleString('en-us', {day:'numeric', month:'short',year: 'numeric'});
                         if blog.visibility === false

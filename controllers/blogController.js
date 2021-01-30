@@ -1,4 +1,5 @@
 const fs = require('fs');
+const aws = require('aws-sdk');
 const crypto = require('crypto');
 const Blogs = require('../models/blogsModel');
 const multer = require('multer');
@@ -7,6 +8,12 @@ const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
 
 const factory = require('./handlerFactory');
+
+// Configuring aws s3
+const awsS3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
 
 const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
@@ -42,21 +49,30 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
   }
   const randomString = crypto.randomBytes(16).toString('hex');
   req.body.imageCover = `blog-${randomString}-${Date.now()}-cover.jpeg`;
-  await sharp(req.files.imageCover[0].buffer)
+  const image = await sharp(req.files.imageCover[0].buffer)
     .resize(1280, 720, { fit: 'cover' })
     .toFormat('jpeg')
-    .jpeg('quality:40')
-    .toFile(`public/img/blogs/${req.body.imageCover}`);
+    .jpeg('quality:40');
+  const params = {
+    Bucket: 'datsec-blog-images/blog-images',
+    Key: `${req.body.imageCover}`,
+    Body: image,
+  };
+  await awsS3.upload(params, (err, data) => {
+    if (err) {
+      console.log(err);
+      return next(new AppError('Failed to upload a file', 401));
+    }
+  });
+  //.toFile(`public/img/blogs/${req.body.imageCover}`);
   if (req.files.stepsImg) {
     req.body.stepsImg = [];
     await Promise.all(
       req.files.stepsImg.map(async (file, i) => {
         const randomString = crypto.randomBytes(16).toString('hex');
         const filename = `blogs-${randomString}-${Date.now()}-${i + 1}.jpeg`;
-        await sharp(file.buffer)
-          .toFormat('jpeg')
-          .jpeg('quality:60')
-          .toFile(`public/img/blogs/${filename}`);
+        await sharp(file.buffer).toFormat('jpeg').jpeg('quality:60');
+        //  .toFile(`public/img/blogs/${filename}`);
         req.body.stepsImg.push(filename);
       })
     );
@@ -64,15 +80,27 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
   next();
 });
 exports.deleteImage = CatchAsync(async (req, res, next) => {
-  if (!req.body.imageCover) return next();
   const blog = await Blogs.findById(req.params.id);
   if (!blog) next();
   if (!blog.imageCover) next();
-  fs.unlink(`public/img/blogs/${blog.imageCover}`, function (err) {
-    if (err) {
-      next(new AppError('Image not found', 401));
+  console.log(blog.imageCover);
+  await awsS3.deleteObject(
+    {
+      Bucket: 'datsec-blog-images',
+      Key: `blog-images/${blog.imageCover}`,
+    },
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        return next('Failed to delete file.. Please try after sometime', 401);
+      }
     }
-  });
+  );
+  // fs.unlink(`public/img/blogs/${blog.imageCover}`, function (err) {
+  //   if (err) {
+  //     next(new AppError('Image not found', 401));
+  //   }
+  // });
   next();
 });
 exports.getAllBlog = factory.getAll(Blogs);

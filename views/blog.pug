@@ -51,7 +51,7 @@ block content
                             h2= blog.title
                             - const date=blog.createdAt.toLocaleString('en-us', {day:'numeric', month:'short',year: 'numeric'});
                             h5.date= `updated on ${date}`
-                        img.img-container(src=`/img/blogs/${blog.imageCover}` alt=`${blog.slug}` )
+                        img.img-container(src=`https://datsec-blog-images.s3.ap-south-1.amazonaws.com/blog-images/${blog.imageCover}` alt=`${blog.slug}` )
                         div.content
                             article !{blog.content}    
                         if blog.stepsDescription

@@ -43,6 +43,7 @@ app.use(
         fontSrc: ["'self'", 'fonts.gstatic.com', 'cdnjs.cloudflare.com'],
         imgSrc: [
           "'self'",
+          'https://datsec-blog-images.s3.ap-south-1.amazonaws.com',
           'https://maps.gstatic.com',
           'https://maps.googleapis.com',
           'data:',
