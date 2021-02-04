@@ -82,6 +82,13 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
 exports.deleteImage = CatchAsync(async (req, res, next) => {
   const blog = await Blogs.findById(req.params.id);
   if (!blog) next();
+  if (!req.body.imageCover) next();
+  if (!req.files) {
+    return next();
+  }
+  if (!req.files.imageCover) {
+    return next();
+  }
   if (!blog.imageCover) next();
   console.log(blog.imageCover);
   await awsS3.deleteObject(
