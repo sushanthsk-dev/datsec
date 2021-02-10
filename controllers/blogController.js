@@ -41,29 +41,26 @@ exports.aliasTop5RecentBlog = (req, res, next) => {
 };
 
 exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
-  if (!req.files) {
-    return next();
+  if (req.files.imageCover) {
+    const randomString = crypto.randomBytes(16).toString('hex');
+    req.body.imageCover = `blog-${randomString}-${Date.now()}-cover.jpeg`;
+    const image = await sharp(req.files.imageCover[0].buffer)
+      .resize(1280, 720, { fit: 'cover' })
+      .toFormat('jpeg')
+      .jpeg('quality:40');
+    const params = {
+      Bucket: 'datsec-blog-images/blog-images',
+      Key: `${req.body.imageCover}`,
+      Body: image,
+    };
+    await awsS3.upload(params, (err, data) => {
+      if (err) {
+        console.log(err);
+        return next(new AppError('Failed to upload a file', 401));
+      }
+    });
   }
-  if (!req.files.imageCover) {
-    return next();
-  }
-  const randomString = crypto.randomBytes(16).toString('hex');
-  req.body.imageCover = `blog-${randomString}-${Date.now()}-cover.jpeg`;
-  const image = await sharp(req.files.imageCover[0].buffer)
-    .resize(1280, 720, { fit: 'cover' })
-    .toFormat('jpeg')
-    .jpeg('quality:40');
-  const params = {
-    Bucket: 'datsec-blog-images/blog-images',
-    Key: `${req.body.imageCover}`,
-    Body: image,
-  };
-  await awsS3.upload(params, (err, data) => {
-    if (err) {
-      console.log(err);
-      return next(new AppError('Failed to upload a file', 401));
-    }
-  });
+
   //.toFile(`public/img/blogs/${req.body.imageCover}`);
   if (req.files.stepsImg) {
     req.body.stepsImg = [];
@@ -71,8 +68,23 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
       req.files.stepsImg.map(async (file, i) => {
         const randomString = crypto.randomBytes(16).toString('hex');
         const filename = `blogs-${randomString}-${Date.now()}-${i + 1}.jpeg`;
-        await sharp(file.buffer).toFormat('jpeg').jpeg('quality:60');
+        const image = await sharp(file.buffer)
+          .toFormat('jpeg')
+          .jpeg('quality:60');
         //  .toFile(`public/img/blogs/${filename}`);
+        await awsS3.upload(
+          {
+            Bucket: 'datsec-blog-images/blog-steps-images',
+            Key: `${filename}`,
+            Body: image,
+          },
+          (err, data) => {
+            if (err) {
+              console.log(err);
+              return next(new AppError('Failed to upload a file', 401));
+            }
+          }
+        );
         req.body.stepsImg.push(filename);
       })
     );
@@ -81,28 +93,38 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
 });
 exports.deleteImage = CatchAsync(async (req, res, next) => {
   const blog = await Blogs.findById(req.params.id);
-  if (!blog) next();
-  if (!req.body.imageCover) next();
-  if (!req.files) {
-    return next();
-  }
-  if (!req.files.imageCover) {
-    return next();
-  }
-  if (!blog.imageCover) next();
-  console.log(blog.imageCover);
-  await awsS3.deleteObject(
-    {
-      Bucket: 'datsec-blog-images',
-      Key: `blog-images/${blog.imageCover}`,
-    },
-    (err, data) => {
-      if (err) {
-        console.log(err);
-        return next('Failed to delete file.. Please try after sometime', 401);
-      }
+  if (blog) {
+    if (req.body.imageCover) {
+      await awsS3.deleteObject(
+        {
+          Bucket: 'datsec-blog-images',
+          Key: `blog-images/${blog.imageCover}`,
+        },
+        (err, data) => {
+          if (err) {
+            console.log(err);
+            return next(
+              'Failed to delete file.. Please try after sometime',
+              401
+            );
+          }
+        }
+      );
+      next();
     }
-  );
+    await awsS3.deleteObject(
+      {
+        Bucket: 'datsec-blog-images',
+        Key: `blog-images/${blog.imageCover}`,
+      },
+      (err, data) => {
+        if (err) {
+          console.log(err);
+          return next('Failed to delete file.. Please try after sometime', 401);
+        }
+      }
+    );
+  }
   // fs.unlink(`public/img/blogs/${blog.imageCover}`, function (err) {
   //   if (err) {
   //     next(new AppError('Image not found', 401));
