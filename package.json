@@ -1,7 +1,6 @@
 {
   "name": "scriptkids",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -52,5 +51,14 @@
   },
   "engines": {
     "node": "^13"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sushanthsk-dev/datsec.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sushanthsk-dev/datsec/issues"
+  },
+  "homepage": "https://github.com/sushanthsk-dev/datsec#readme",
+  "description": ""
 }
