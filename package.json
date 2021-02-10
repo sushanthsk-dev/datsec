@@ -15,6 +15,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "a": "^2.1.2",
+    "aws-sdk": "^2.841.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
@@ -51,14 +52,5 @@
   },
   "engines": {
     "node": "^13"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sushanthsk-dev/datsec.git"
-  },
-  "bugs": {
-    "url": "https://github.com/sushanthsk-dev/datsec/issues"
-  },
-  "homepage": "https://github.com/sushanthsk-dev/datsec#readme",
-  "description": ""
+  }
 }
