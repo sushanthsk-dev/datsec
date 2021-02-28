@@ -59,7 +59,8 @@ block content
                         - var i=0;
                         if count > 0
                             while i<count
-                                p(style="margin:0px 19px")=`${blog.stepsDescription[i]}`
+                                p(style="margin:0px 19px")
+                                    span !{blog.stepsDescription[i]}
                                 img.step-img-container(src=`https://datsec-blog-images.s3.ap-south-1.amazonaws.com/blog-steps-images/${blog.stepsImg[i]}` alt=`${blog.title}`)
                                 br
                                 br
