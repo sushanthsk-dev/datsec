@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: datsec-service
+spec:
+  selector:
+    app: datsec-app
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 3000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datsec-app
+spec:
+  selector:
+    matchLabels:
+      app: datsec-app
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: datsec-app
+    spec:
+      containers:
+      - name: datsec-app
+        image: sushanthsk/sample-app
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
