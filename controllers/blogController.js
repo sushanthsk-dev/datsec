@@ -3,7 +3,7 @@ const aws = require('aws-sdk');
 const crypto = require('crypto');
 const Blogs = require('../models/blogsModel');
 const multer = require('multer');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const CatchAsync = require('../utils/CatchAsync');
 const AppError = require('../utils/AppError');
 
@@ -44,10 +44,11 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
   if (req.files.imageCover) {
     const randomString = crypto.randomBytes(16).toString('hex');
     req.body.imageCover = `blog-${randomString}-${Date.now()}-cover.jpeg`;
-    const image = await sharp(req.files.imageCover[0].buffer)
-      .resize(1280, 720, { fit: 'cover' })
-      .toFormat('jpeg')
-      .jpeg('quality:40');
+    // const image = await sharp()
+    //   .resize(1280, 720, { fit: 'cover' })
+    //   .toFormat('jpeg')
+    //   .jpeg('quality:40');
+    const image = req.files.imageCover[0].buffer;
     const params = {
       Bucket: 'datsec-blog-images/blog-images',
       Key: `${req.body.imageCover}`,
@@ -68,10 +69,11 @@ exports.resizeBlogImages = CatchAsync(async (req, res, next) => {
       req.files.stepsImg.map(async (file, i) => {
         const randomString = crypto.randomBytes(16).toString('hex');
         const filename = `blogs-${randomString}-${Date.now()}-${i + 1}.jpeg`;
-        const image = await sharp(file.buffer)
-          .toFormat('jpeg')
-          .jpeg('quality:60');
+        // const image = await sharp(file.buffer)
+        //   .toFormat('jpeg')
+        //   .jpeg('quality:60');
         //  .toFile(`public/img/blogs/${filename}`);
+        const image = file.buffer;
         await awsS3.upload(
           {
             Bucket: 'datsec-blog-images/blog-steps-images',

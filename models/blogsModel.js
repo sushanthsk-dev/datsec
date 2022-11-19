@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { bool } = require('sharp');
 const slugify = require('slugify');
 
 const BlogSchema = new mongoose.Schema({
