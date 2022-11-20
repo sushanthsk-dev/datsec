@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: datsec-service
 spec:
+  type: NodePort
   selector:
     app: datsec-app
   ports:
@@ -14,20 +15,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: datsec-app
+  name: datsec-webapp
 spec:
   selector:
     matchLabels:
-      app: datsec-app
+      app: datsec-webapp
   replicas: 5
   template:
     metadata:
       labels:
-        app: datsec-app
+        app: datsec-webapp
     spec:
       containers:
-      - name: datsec-app
-        image: sushanthsk/sample-app
+      - name: datsec-webapp
+        image: sushanthsk/datsec-webapp
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
