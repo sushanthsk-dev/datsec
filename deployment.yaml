@@ -5,31 +5,30 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: datsec-webapp
+    app: datsec-app
   ports:
   - protocol: "TCP"
-    port: 3000
+    port: 80
     targetPort: 3000
-    nodePort: 32121
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: datsec-webapp
+  name: datsec-app
 spec:
   selector:
     matchLabels:
-      app: datsec-webapp
+      app: datsec-app
   replicas: 5
   template:
     metadata:
       labels:
-        app: datsec-webapp
+        app: datsec-app
     spec:
       containers:
-      - name: datsec-webapp
-        image: sushanthsk/datsec-webapp
-        imagePullPolicy: IfNotPresent
+      - name: datsec-app
+        image: sushanthsk/datsec-app
+        imagePullPolicy: Never
         ports:
         - containerPort: 3000
