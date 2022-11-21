@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: datsec-service
 spec:
-  type: NodePort
   selector:
     app: datsec-app
   ports:
