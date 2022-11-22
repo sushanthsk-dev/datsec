@@ -29,6 +29,6 @@ spec:
       containers:
       - name: datsec-app
         image: sushanthsk/datsec-app:v1
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
