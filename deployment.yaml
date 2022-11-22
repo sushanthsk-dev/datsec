@@ -20,6 +20,10 @@ spec:
   selector:
     matchLabels:
       app: datsec-app
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
   replicas: 5
   template:
     metadata:
