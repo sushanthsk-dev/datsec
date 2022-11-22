@@ -21,3 +21,10 @@ minikube service datsec-service
 kubectl logs podName
 
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+
+https://medium.com/swlh/how-to-run-locally-built-docker-images-in-kubernetes-b28fbc32cc1d
+
+
+To get the port 
+minikube service datsec-service --url
