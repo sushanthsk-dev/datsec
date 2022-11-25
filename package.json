@@ -8,7 +8,8 @@
     "start": "node server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir  ./public/js --out-file bundle.js --public-url .",
-    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url ."
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
+    "sonar":"node_modules/sonar-scanner/bin/sonar-scanner"
   },
   "author": "sushanth",
   "license": "ISC",
