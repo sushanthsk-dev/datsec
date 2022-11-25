@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Init'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sushanthsk-dev/datsec']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/sushanthsk-dev/datsec']]])
             }
         }
         stage("Build") {
